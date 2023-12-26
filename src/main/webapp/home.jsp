@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+ 	<%@ include file="header.jsp" %>
 	<div align="center">
 		<h1>You have logined successfully</h1>
 	</div>

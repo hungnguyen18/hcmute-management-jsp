@@ -37,11 +37,11 @@ public class LoginController extends HttpServlet {
 
         try {
             if (loginDao.validate(loginBean)) {
-                response.sendRedirect("loginsuccess.jsp");
+                response.sendRedirect("home.jsp");
             } else {
             	HttpSession session = request.getSession();
             	session.setAttribute("error", "Invalid username or password");
-            	request.getRequestDispatcher("index.jsp").forward(request, response);
+            	request.getRequestDispatcher("signin.jsp").forward(request, response);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
