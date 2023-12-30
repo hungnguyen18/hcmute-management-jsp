@@ -1,0 +1,5 @@
+apply plugin: 'war'
+
+dependencies {
+     compile 'kr.pe.kwonnam.jsp:jsp-template-inheritance:0.3.RELEASE'
+}

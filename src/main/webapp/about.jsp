@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="Dao.*"%>
+<%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance" prefix="layout"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
- 	<%@ include file="header.jsp" %>
-	<div align="center">
-		<h1>You have logined successfully</h1>
-	</div>
+	<layout:extends name="base">
+		<layout:put block="contents">
+			<h5>about</h5>
+		</layout:put>
+	</layout:extends>
 </body>
 </html>
