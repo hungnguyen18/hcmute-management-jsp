@@ -8,7 +8,7 @@ public class UserBean implements Serializable {
 	private String user_ID;
 	private String username;
 	private String password;
-	private UserRole role;
+	private String role;
 	private String email;
 	private String phone_number;
 	private Boolean active;
@@ -18,7 +18,7 @@ public class UserBean implements Serializable {
 		// Default constructor
 	}
 
-	public UserBean(String user_ID, String username, String password, UserRole role, String email, String phone_number,
+	public UserBean(String user_ID, String username, String password, String role, String email, String phone_number,
 			Boolean active) {
 		this.user_ID = user_ID;
 		this.username = username;
@@ -54,12 +54,8 @@ public class UserBean implements Serializable {
 		this.password = password;
 	}
 
-	public UserRole getRole() {
+	public String getRole() {
 		return role;
-	}
-
-	public void setRole(UserRole role) {
-		this.role = role;
 	}
 
 	public String getEmail() {
@@ -86,10 +82,14 @@ public class UserBean implements Serializable {
 		this.active = active;
 	}
 
-	// Enum for User Roles
-	public enum UserRole {
-		student, ctsv_staff, system_admin
+	public void setRole(String role) {
+		this.role = role;
 	}
+
+	// Các hằng số đại diện cho các vai trò
+	public static final String STUDENT = "student";
+	public static final String STAFF_CTSV = "staff_ctsv";
+	public static final String SYSTEM_ADMIN = "system_admin";
 
 	// toString method for debugging/logging
 	@Override

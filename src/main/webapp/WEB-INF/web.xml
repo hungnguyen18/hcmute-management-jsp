@@ -3,6 +3,9 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
+	<session-config>  <!-- 1200 minutes -->
+		<session-timeout>1200</session-timeout>
+	</session-config>
 	<display-name>hcmute-management</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
@@ -24,4 +27,6 @@
 		<param-name>jsp-inheritance-suffix</param-name>
 		<param-value>.jsp</param-value>
 	</context-param>
+	
+	
 </web-app>

@@ -71,8 +71,7 @@ public class LoginDao {
 				String phoneNumber = callableStatement.getString(PHONE_NUMBER_PARAM_INDEX);
 
 				// Create a User object with the retrieved information
-				user = new UserBean(userId, loginBean.getUsername(), "", UserBean.UserRole.valueOf(role), email,
-						phoneNumber, status);
+				user = new UserBean(userId, loginBean.getUsername(), "", role, email, phoneNumber, status);
 				UserSessionUtil.addUser(request, user);
 			}
 
