@@ -26,9 +26,6 @@ public class MajorController extends HttpServlet {
 
 		if (action != null) {
 			switch (action) {
-			case "edit":
-				showEditForm(request, response);
-				break;
 			case "delete":
 				deleteMajor(request, response);
 				break;
@@ -72,21 +69,6 @@ public class MajorController extends HttpServlet {
 		}
 	}
 
-	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String majorID = request.getParameter("majorID");
-
-		try (Connection connection = DBConnector.getConnection()) {
-			MajorDao majorDAO = new MajorDao(connection);
-			MajorBean major = majorDAO.getMajorByID(majorID);
-			request.setAttribute("major", major);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("edit_major.jsp");
-			dispatcher.forward(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
 	private void addMajor(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String majorCode = request.getParameter("majorCode");
@@ -110,7 +92,7 @@ public class MajorController extends HttpServlet {
 		try (Connection connection = DBConnector.getConnection()) {
 			MajorDao majorDAO = new MajorDao(connection);
 			majorDAO.updateMajor(majorID, majorCode, majorName);
-			response.sendRedirect("MajorController");
+			response.sendRedirect("majors");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -123,7 +105,8 @@ public class MajorController extends HttpServlet {
 		try (Connection connection = DBConnector.getConnection()) {
 			MajorDao majorDAO = new MajorDao(connection);
 			majorDAO.deleteMajor(majorID);
-			response.sendRedirect("MajorController");
+			response.sendRedirect("majors");
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

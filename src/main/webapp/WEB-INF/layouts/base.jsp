@@ -30,7 +30,7 @@ UserBean user = UserSessionUtil.getUser(request);
 				<!-- Logo Section -->
 				<div class="h-24 py-4 px-6 flex items-center justify-center">
 					<!-- Your Logo Goes Here -->
-					<h2>LOGO</h2>
+					<p class="text-7xl font-black drop-shadow-2xl">UTE</p>
 				</div>
 				<!-- Navigation Section -->
 				<nav>
@@ -65,6 +65,9 @@ UserBean user = UserSessionUtil.getUser(request);
 								<li class="py-2 px-2"><a href="majors"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										Majors </a></li>
+								<li class="py-2 px-2"><a href="batches.jsp"
+									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
+										Batches </a></li>
 								<!-- Add more management options for system admin as needed -->
 							</c:when>
 						</c:choose>

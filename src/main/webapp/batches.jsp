@@ -11,7 +11,7 @@
 
 			<!-- Add Major Form -->
 			<div class="mb-8">
-				<h2 class="text-xl font-bold mb-4">Add Major</h2>
+				<h2 class="text-xl font-bold mb-4">Add Batch</h2>
 				<!-- Your add major form goes here -->
 				<form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
 					action="majors" method="post">
@@ -19,15 +19,15 @@
 					<input type="hidden" name="action" value="add">
 					<div>
 						<label for="major_code"
-							class="block text-sm font-medium text-gray-700">Major
-							Code</label> <input type="text" name="majorCode" placeholder="enter major code..." required
+							class="block text-sm font-medium text-gray-700">Batch
+							Code</label> <input type="text" name="majorCode" placeholder="enter batch code..." required
 							class="mt-1 p-2 border rounded-md w-full">
 					</div>
 					<!-- Major Name Input -->
 					<div>
 						<label for="major_name"
-							class="block text-sm font-medium text-gray-700">Major
-							Name</label> <input type="text" name="majorName" placeholder="enter major name..." required 
+							class="block text-sm font-medium text-gray-700">Batch
+							Name</label> <input type="text" name="majorName" placeholder="enter batch name..." required 
 							class="mt-1 p-2 border rounded-md w-full">
 					</div>
 					<!-- Submit button -->
@@ -42,15 +42,15 @@
 			<!-- Major List -->
 			<!-- Major List -->
 			<div>
-				<h2 class="text-xl font-bold mb-4">Major List</h2>
+				<h2 class="text-xl font-bold mb-4">Batch List</h2>
 				<!-- Your major list table goes here -->
 
 				<div id="table-scroll" class="table-scroll">
 					<table id="main-table" class="main-table">
 						<thead>
 							<tr>
-								<th scope="col">Major code</th>
-								<th scope="col">Major name</th>
+								<th scope="col">Batch code</th>
+								<th scope="col">Batch name</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
