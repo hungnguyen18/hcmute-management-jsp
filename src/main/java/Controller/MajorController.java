@@ -16,7 +16,7 @@ import Bean.MajorBean;
 import Dao.MajorDao;
 import Util.DBConnector;
 
-@WebServlet("/MajorController")
+@WebServlet("/majors")
 public class MajorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -65,11 +65,8 @@ public class MajorController extends HttpServlet {
 			MajorDao majorDAO = new MajorDao(connection);
 			List<MajorBean> majors = majorDAO.getAllMajors();
 			request.setAttribute("majors", majors);
-			// Chuyển dữ liệu sang JSON và gửi về trình duyệt
-			String json = new Gson().toJson(majors);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(json);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/majors.jsp");
+			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -98,7 +95,7 @@ public class MajorController extends HttpServlet {
 		try (Connection connection = DBConnector.getConnection()) {
 			MajorDao majorDAO = new MajorDao(connection);
 			majorDAO.insertMajor(majorCode, majorName);
-			response.sendRedirect("majors.jsp");
+			response.sendRedirect("majors");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

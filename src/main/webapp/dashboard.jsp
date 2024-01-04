@@ -10,11 +10,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<layout:extends name="base">
 		<layout:put block="contents">
+
 			<h5>Dashboard</h5>
+			
+		
 		</layout:put>
 	</layout:extends>
 </body>

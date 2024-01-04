@@ -19,6 +19,7 @@ UserBean user = UserSessionUtil.getUser(request);
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../../resource/css/styles.css">
 
 </head>
 <body>
@@ -40,28 +41,28 @@ UserBean user = UserSessionUtil.getUser(request);
 						<c:choose>
 							<c:when test="${user.role == 'student'}">
 								<!-- Sidebar menu for student -->
-								<li class="py-2 px-2"><a href="services.jsp"
+								<li class="py-2 px-2"><a href="services"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										Services </a></li>
 								<!-- Add more services for student as needed -->
 							</c:when>
 							<c:when test="${user.role == 'ctsv_staff'}">
 								<!-- Sidebar menu for CTSV staff -->
-								<li class="py-2 px-2"><a href="Requests.jsp"
+								<li class="py-2 px-2"><a href="requests"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										Request </a></li>
 								<!-- Add more services for CTSV staff as needed -->
 							</c:when>
 							<c:when test="${user.role == 'system_admin'}">
 								<!-- Sidebar menu for system admin -->
-								<li class="py-2 px-2"><a href="student.jsp"
+								<li class="py-2 px-2"><a href="student"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										Student </a></li>
 
-								<li class="py-2 px-2"><a href="ctsv.jsp"
+								<li class="py-2 px-2"><a href="ctsv"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										CTSV staff </a></li>
-								<li class="py-2 px-2"><a href="majors.jsp"
+								<li class="py-2 px-2"><a href="majors"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										Majors </a></li>
 								<!-- Add more management options for system admin as needed -->
