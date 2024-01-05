@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import Bean.MajorBean;
-import Dao.MajorDao;
+import Bean.BatchBean;
+import Dao.BatchDao;
 import Util.DBConnector;
 
-@WebServlet("/majors")
-public class MajorController extends HttpServlet {
+@WebServlet("/batches")
+public class BatchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,17 +29,17 @@ public class MajorController extends HttpServlet {
 		if (action != null) {
 			switch (action) {
 			case "delete":
-				deleteMajor(request, response);
+				deleteBatch(request, response);
 				break;
 			case "get":
-				getAllMajorsJson(request, response);
+				getAllBatchesJson(request, response);
 				break;
 			default:
-				getAllMajors(request, response);
+				getAllBatches(request, response);
 				break;
 			}
 		} else {
-			getAllMajors(request, response);
+			getAllBatches(request, response);
 		}
 	}
 
@@ -50,10 +50,10 @@ public class MajorController extends HttpServlet {
 		if (action != null) {
 			switch (action) {
 			case "add":
-				addMajor(request, response);
+				addBatch(request, response);
 				break;
 			case "update":
-				updateMajor(request, response);
+				updateBatch(request, response);
 				break;
 			default:
 				break;
@@ -61,13 +61,13 @@ public class MajorController extends HttpServlet {
 		}
 	}
 
-	private void getAllMajorsJson(HttpServletRequest request, HttpServletResponse response)
+	private void getAllBatchesJson(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try (Connection connection = DBConnector.getConnection()) {
-			MajorDao majorDAO = new MajorDao(connection);
-			List<MajorBean> majors = majorDAO.getAllMajors();
-			request.setAttribute("majors", majors);
-			String json = new Gson().toJson(majors);
+			BatchDao batchDAO = new BatchDao(connection);
+			List<BatchBean> batches = batchDAO.getAllBatches();
+			request.setAttribute("batches", batches);
+			String json = new Gson().toJson(batches);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(json);
@@ -76,57 +76,56 @@ public class MajorController extends HttpServlet {
 		}
 	}
 
-	private void getAllMajors(HttpServletRequest request, HttpServletResponse response)
+	private void getAllBatches(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try (Connection connection = DBConnector.getConnection()) {
-			MajorDao majorDAO = new MajorDao(connection);
-			List<MajorBean> majors = majorDAO.getAllMajors();
-			request.setAttribute("majors", majors);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/majors.jsp");
+			BatchDao batchDAO = new BatchDao(connection);
+			List<BatchBean> batches = batchDAO.getAllBatches();
+			request.setAttribute("batches", batches);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/batches.jsp");
 			dispatcher.forward(request, response);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void addMajor(HttpServletRequest request, HttpServletResponse response)
+	private void addBatch(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String majorCode = request.getParameter("majorCode");
-		String majorName = request.getParameter("majorName");
+		String batchCode = request.getParameter("batchCode");
+		String batchName = request.getParameter("batchName");
 
 		try (Connection connection = DBConnector.getConnection()) {
-			MajorDao majorDAO = new MajorDao(connection);
-			majorDAO.insertMajor(majorCode, majorName);
-			response.sendRedirect("majors");
+			BatchDao batchDAO = new BatchDao(connection);
+			batchDAO.insertBatch(batchCode, batchName);
+			response.sendRedirect("batches");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void updateMajor(HttpServletRequest request, HttpServletResponse response)
+	private void updateBatch(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String majorID = request.getParameter("majorID");
-		String majorCode = request.getParameter("majorCode");
-		String majorName = request.getParameter("majorName");
+		String batchID = request.getParameter("batchID");
+		String batchCode = request.getParameter("batchCode");
+		String batchName = request.getParameter("batchName");
 
 		try (Connection connection = DBConnector.getConnection()) {
-			MajorDao majorDAO = new MajorDao(connection);
-			majorDAO.updateMajor(majorID, majorCode, majorName);
-			response.sendRedirect("majors");
+			BatchDao batchDAO = new BatchDao(connection);
+			batchDAO.updateBatch(batchID, batchCode, batchName);
+			response.sendRedirect("batches");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void deleteMajor(HttpServletRequest request, HttpServletResponse response)
+	private void deleteBatch(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String majorID = request.getParameter("majorID");
+		String batchID = request.getParameter("batchID");
 
 		try (Connection connection = DBConnector.getConnection()) {
-			MajorDao majorDAO = new MajorDao(connection);
-			majorDAO.deleteMajor(majorID);
-			response.sendRedirect("majors");
+			BatchDao batchDAO = new BatchDao(connection);
+			batchDAO.deleteBatch(batchID);
+			response.sendRedirect("batches");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

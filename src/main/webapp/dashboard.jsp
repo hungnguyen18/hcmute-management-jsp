@@ -17,8 +17,8 @@
 		<layout:put block="contents">
 
 			<h5>Dashboard</h5>
-			
-		
+
+
 		</layout:put>
 	</layout:extends>
 </body>

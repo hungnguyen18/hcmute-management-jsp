@@ -20,14 +20,16 @@
 					<div>
 						<label for="major_code"
 							class="block text-sm font-medium text-gray-700">Major
-							Code</label> <input type="text" name="majorCode" placeholder="enter major code..." required
+							Code</label> <input type="text" name="majorCode"
+							placeholder="enter major code..." required
 							class="mt-1 p-2 border rounded-md w-full">
 					</div>
 					<!-- Major Name Input -->
 					<div>
 						<label for="major_name"
 							class="block text-sm font-medium text-gray-700">Major
-							Name</label> <input type="text" name="majorName" placeholder="enter major name..." required 
+							Name</label> <input type="text" name="majorName"
+							placeholder="enter major name..." required
 							class="mt-1 p-2 border rounded-md w-full">
 					</div>
 					<!-- Submit button -->

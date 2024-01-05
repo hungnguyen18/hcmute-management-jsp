@@ -55,9 +55,9 @@ UserBean user = UserSessionUtil.getUser(request);
 							</c:when>
 							<c:when test="${user.role == 'system_admin'}">
 								<!-- Sidebar menu for system admin -->
-								<li class="py-2 px-2"><a href="student"
+								<li class="py-2 px-2"><a href="students"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
-										Student </a></li>
+										Students </a></li>
 
 								<li class="py-2 px-2"><a href="ctsv"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
@@ -65,7 +65,7 @@ UserBean user = UserSessionUtil.getUser(request);
 								<li class="py-2 px-2"><a href="majors"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										Majors </a></li>
-								<li class="py-2 px-2"><a href="batches.jsp"
+								<li class="py-2 px-2"><a href="batches"
 									class="block rounded-lg py-2 px-4 text-sm hover:bg-[#509CDB] focus:outline-none focus:bg-[#509CDB]">
 										Batches </a></li>
 								<!-- Add more management options for system admin as needed -->
@@ -80,7 +80,7 @@ UserBean user = UserSessionUtil.getUser(request);
 			<layout:block name="header">
 				<%@ include file="header.jsp"%>
 			</layout:block>
-			<div class="container mx-auto px-4">
+			<div class="container mx-auto p-4">
 				<layout:block name="contents">
 				</layout:block>
 			</div>
