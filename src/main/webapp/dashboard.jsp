@@ -16,9 +16,10 @@
 	<layout:extends name="base">
 		<layout:put block="contents">
 
-			<h5>Dashboard</h5>
-
-
+			<div class="m-auto w-full h-[80vh] flex justify-center items-center">
+				<span class="text-5xl font-semibold">Welcome,
+					${user.username} </span>
+			</div>
 		</layout:put>
 	</layout:extends>
 </body>

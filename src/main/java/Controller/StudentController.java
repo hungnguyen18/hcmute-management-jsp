@@ -34,6 +34,9 @@ public class StudentController extends HttpServlet {
 			case "edit":
 				detailStudent(request, response);
 				break;
+			case "get":
+				getStudentByUserId(request, response);
+				break;
 			default:
 				getAllStudents(request, response);
 				break;
@@ -99,6 +102,28 @@ public class StudentController extends HttpServlet {
 			response.getWriter().write(json);
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/detail-student.jsp");
 //			dispatcher.forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void getStudentByUserId(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String userId = request.getParameter("userId");
+
+		try (Connection connection = DBConnector.getConnection()) {
+			StudentDao studentDao = new StudentDao(connection);
+			StudentBean student = studentDao.getStudentByUserId(userId);
+
+			if (student != null) {
+				request.setAttribute("student", student);
+				String json = new Gson().toJson(student);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
+			} else {
+				response.sendRedirect("students");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

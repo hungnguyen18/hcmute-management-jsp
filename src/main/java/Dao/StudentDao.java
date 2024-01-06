@@ -103,6 +103,35 @@ public class StudentDao {
 		return student;
 	}
 
+	public StudentBean getStudentByUserId(String userId) throws SQLException {
+		String query = "SELECT * FROM Students WHERE User_ID = ?";
+		StudentBean student = null;
+
+		try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setString(1, userId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				student = new StudentBean();
+				student.setStudentID(resultSet.getString("Student_ID"));
+				student.setMssv(resultSet.getString("MSSV"));
+				student.setStudentName(resultSet.getString("student_name"));
+				student.setBirthdate(resultSet.getString("birthdate"));
+				student.setGender(resultSet.getString("gender"));
+				student.setDepartment(resultSet.getString("department"));
+				student.setMajorID(resultSet.getString("major_id"));
+				student.setBatchID(resultSet.getString("batch_id"));
+				student.setEducationSystem(resultSet.getString("education_system"));
+				student.setEmail(resultSet.getString("email"));
+				student.setPhoneNumber(resultSet.getString("phone_number"));
+				student.setAddress(resultSet.getString("address"));
+				student.setUserID(resultSet.getString("User_ID"));
+			}
+		}
+
+		return student;
+	}
+
 	// Update student using PreparedStatement
 	public void updateStudent(StudentBean student) throws SQLException {
 		String query = "CALL UpdateStudent(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -127,7 +156,7 @@ public class StudentDao {
 
 	// Delete student by ID
 	public void deleteStudent(String studentID) throws SQLException {
-		String query = "DELETE FROM Students WHERE Student_ID = ?";
+		String query = "CALL DeleteStudent(?)";
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			preparedStatement.setString(1, studentID);

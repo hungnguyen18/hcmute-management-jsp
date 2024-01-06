@@ -227,22 +227,74 @@
 		</dialog>
 
 
-		<link rel="stylesheet" href="./resource/css/table.css">
+		<style>
+		.table-scroll {
+		  position: relative;
+		  width:100%;
+		  z-index: 1;
+		  margin: auto;
+		  overflow: auto;
+		  height: 70vh;
+		}
+		.table-scroll table {
+		  width: 100%;
+		  margin: auto;
+		  border-collapse: separate;
+		  border-spacing: 0;
+		}
+		.table-wrap {
+		  position: relative;
+		}
+		.table-scroll th,
+		.table-scroll td {
+		  padding: 5px 10px;
+		  border: 1px solid #f8f8f8;
+		  background: #fff;
+		  vertical-align: top;
+		}
+		.table-scroll thead th {
+		  background: lightseagreen;
+		  color: #fff;
+		  position: -webkit-sticky;
+		  position: sticky;
+		  top: 0;
+		}
+		/* safari and ios need the tfoot itself to be position:sticky also */
+		.table-scroll tfoot,
+		.table-scroll tfoot th,
+		.table-scroll tfoot td {
+		  position: -webkit-sticky;
+		  position: sticky;
+		  bottom: 0;
+		  background: midnightblue;
+		  color: #fff;
+		  z-index:4;
+		}
+		
+		a:focus {
+		  background: red;
+		} /* testing links*/
+		
+		th:first-child {
+		  position: -webkit-sticky;
+		  position: sticky;
+		  left: 0;
+		  z-index: 2;
+		  background: darkslategray;
+		  color: #fff;
+		}
+		thead th:first-child,
+		tfoot th:first-child {
+		  z-index: 5;
+		}
+		</style>
 
 		<script>
 			function populateSelect(selectId, data) {
 			    var select = $('#' + selectId);
 
-			    // Xóa tất cả các tùy chọn hiện tại
 			    select.empty();
-
-			    // Thêm tùy chọn mặc định nếu cần
-			    // select.append($('<option>', {
-			    //     value: '',
-			    //     text: 'Select an option'
-			    // }));
-
-			    // Thêm các tùy chọn từ dữ liệu
+		
 			    $.each(data, function(index, item) {
 			        select.append($('<option>', {
 			            value: item.majorID || item.batchID,
@@ -261,8 +313,7 @@
 
 			    const open = {
 			        delete() {
-			            // Set major.code value in the modal
-			            // document.getElementById('deleteModal').dataset.majorID = majorID;
+			            document.getElementById('deleteModal').dataset.studentID = studentID;
 			            // Open the modal
 			        	document.getElementById('deleteModal').showModal();
 			        },
@@ -300,23 +351,13 @@
 			}
 
 			function confirmDelete() {
-			    var majorID = $('#deleteModal').data('majorID');
-
-			    // Make an AJAX request using jQuery
-			    $.ajax({
-			        url: 'majors?action=delete&majorID=' + majorID,
-			        method: 'GET',
-			        success: function(response) {
-			            closeModal('deleteModal');
-			            window.location.reload();
-			        },
-			        error: function(error) {
-			            console.error('There was a problem with the AJAX request:', error);
-			        }
-			    });
-			}
-
+			    var studentID = $('#deleteModal').data('studentID');
 				
+			    $.get('students?action=delete&studentID='+ studentID, function(data) {
+			    	 closeModal('deleteModal');
+			         window.location.reload();
+			    });		    
+			}
 			</script>
 	</layout:put>
 </layout:extends>
